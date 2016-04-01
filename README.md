@@ -1,6 +1,6 @@
 # RichTimer
 
-[![CI Status](http://img.shields.io/travis/Pilipenko Dima/RichTimer.svg?style=flat)](https://travis-ci.org/Pilipenko Dima/RichTimer)
+[![CI Status](http://img.shields.io/travis/dimpiax/RichTimer.svg?style=flat)](https://travis-ci.org/dimpiax/RichTimer)
 [![Version](https://img.shields.io/cocoapods/v/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)
 [![License](https://img.shields.io/cocoapods/l/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)
 [![Platform](https://img.shields.io/cocoapods/p/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)

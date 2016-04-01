@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/dimpiax/RichTimer.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/dimpiax'
 
-  s.platforms = { :ios => "8.0", :osx => "10.7", :watchos => "2.0", :tvos => "9.0" }
+  s.platforms = { :ios => "8.0", :osx => "10.9", :watchos => "2.0", :tvos => "9.0" }
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*.swift'
