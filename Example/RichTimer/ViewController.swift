@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import RichTimer
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSTimer.delay(ti: 1)
+        
+        //NSTimer.dela
         // Do any additional setup after loading the view, typically from a nib.
     }
 
