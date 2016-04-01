@@ -10,14 +10,28 @@ import UIKit
 import RichTimer
 
 class ViewController: UIViewController {
+    private var _timer: NSTimer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSTimer.delay(ti: 1)
+        NSTimer.once(1) {
+            print("custom text")
+        }
         
-        //NSTimer.dela
-        // Do any additional setup after loading the view, typically from a nib.
+        NSTimer.once(2, arguments: (text: "amount of characters", doesItWorks: true)) { value in
+            print("\(value.text) is here? \(value.doesItWorks)")
+        }
+        
+        var count = 0
+        _timer = NSTimer.each(3, arguments: 5) {[weak self] value in
+            print("repeated value:\(value)")
+            
+            count += 1
+            if count > 2 {
+                self?._timer!.invalidate()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

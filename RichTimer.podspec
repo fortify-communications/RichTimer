@@ -1,40 +1,22 @@
-#
-# Be sure to run `pod lib lint RichTimer.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "RichTimer"
   s.version          = "0.1.0"
-  s.summary          = "A short description of RichTimer."
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
+  s.summary          = "An Extension on `NSTimer` that manage and accepts generic parameters"
   s.description      = <<-DESC
+                            RichTimer – it's easy NSTimer managment and compact visual appearance.
+                            Accepts generic parameters for common functions
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/RichTimer"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/dimpiax/RichTimer"
   s.license          = 'MIT'
   s.author           = { "Pilipenko Dima" => "dimpiax@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/RichTimer.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/dimpiax/RichTimer.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/dimpiax'
 
-  s.platform     = :ios, '8.0'
+  s.platforms = { :ios => "8.0", :osx => "10.7", :watchos => "2.0", :tvos => "9.0" }
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'RichTimer' => ['Pod/Assets/*.png']
-  }
+  s.source_files = 'Pod/Classes/**/*.swift'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Foundation'
 end

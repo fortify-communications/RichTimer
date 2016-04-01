@@ -1,0 +1,6 @@
+framework module RichTimer {
+  umbrella header "RichTimer-umbrella.h"
+
+  export *
+  module * { export * }
+}
