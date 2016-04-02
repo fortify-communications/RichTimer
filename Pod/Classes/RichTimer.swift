@@ -13,7 +13,7 @@ public extension NSTimer {
         return initTimer(value, userInfo: VoidBox(nilCompletion: completion), repeats: false)
     }
     
-    class func each(value: NSTimeInterval, completion: () -> Void) -> NSTimer {
+    class func every(value: NSTimeInterval, completion: () -> Void) -> NSTimer {
         return initTimer(value, userInfo: VoidBox(nilCompletion: completion), repeats: true)
     }
     
@@ -21,7 +21,7 @@ public extension NSTimer {
         return initTimer(value, userInfo: Box(arguments, completion: completion), repeats: false)
     }
     
-    class func each<T>(value: NSTimeInterval, arguments: T, completion: T -> Void) -> NSTimer {
+    class func every<T>(value: NSTimeInterval, arguments: T, completion: T -> Void) -> NSTimer {
         return initTimer(value, userInfo: Box(arguments, completion: completion), repeats: true)
     }
     
@@ -31,7 +31,7 @@ public extension NSTimer {
     }
     
     private class func initTimer(ti: NSTimeInterval, userInfo: AnyObject, repeats: Bool = false) -> NSTimer {
-        return scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(timerDidFired(_:)), userInfo: userInfo, repeats: repeats)
+        return NSTimer(timeInterval: ti, target: self, selector: #selector(timerDidFired(_:)), userInfo: userInfo, repeats: repeats)
     }
 }
 

@@ -1,5 +1,6 @@
 # RichTimer
 
+[![Build Status](https://travis-ci.org/dimpiax/RichTimer.svg)](http://travis-ci.org/dimpiax/RichTimer)
 [![Version](https://img.shields.io/cocoapods/v/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)
 [![License](https://img.shields.io/cocoapods/l/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)
 [![Platform](https://img.shields.io/cocoapods/p/RichTimer.svg?style=flat)](http://cocoapods.org/pods/RichTimer)
@@ -9,28 +10,44 @@ Accepts generic parameters for common functions
 
 ## Usage
 
+This extension of NSTimer has next useful functions:
+* once – timer fires after delay, not repeatable and accepts generic parameters or nothing 
+* every – timer fires every delay, repeatable and accepts generic parameters or nothing 
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+- - - -
 
+    // once without parameters
     NSTimer.once(1) {
-        print("custom text")
+        print("I have fired after 1 second")
     }
 
-    NSTimer.once(2, arguments: (text: "amount of characters", doesItWorks: true)) { value in
-        print("\(value.text) is here? \(value.doesItWorks)")
+    // once with parameters
+    NSTimer.once(3, arguments: (magicNumber: 4, text: "Passed text to closure")) { delay, text in
+        print("I have magic number: \(magicNumber) and received this: \(text)")
+    }
+    
+    // every without parameters
+    NSTimer.every(10) {
+        print("I'm here for forever, visit every 10 second")
     }
 
+    // every with parameters and func
     var count = 0
-    _timer = NSTimer.each(3, arguments: 5) {[weak self] value in
-        print("repeated value:\(value)")
-
+    var timer: NSTimer!
+    
+    func didFiredTimer(repeatCount: Int) {
         count += 1
-        if count > 2 {
-            self?._timer!.invalidate()
+        if count == repeatCount {
+            print("Timer will be invalidated!")
+            timer.invalidate()
         }
     }
+    
+    timer = NSTimer.every(2, arguments: 4, completion: didFiredTimer)
 
 ## Requirements
+
+Swift 2.2 or above
 
 ## Installation
 
