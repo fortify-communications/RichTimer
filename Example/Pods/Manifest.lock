@@ -1,7 +1,7 @@
 PODS:
   - Nimble (3.2.0)
   - Quick (0.9.1)
-  - RichTimer (0.1.1)
+  - RichTimer (0.1.2)
 
 DEPENDENCIES:
   - Nimble (~> 3.0)
@@ -15,6 +15,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
-  RichTimer: 9080582178d3b6ec8ce341d52cc4c3ec967bba0d
+  RichTimer: 5577faf49c7bf3179adc9d8b94812646fefbcca2
 
 COCOAPODS: 0.39.0
