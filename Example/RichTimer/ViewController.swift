@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         }
         
         // once with parameters
-        NSTimer.once(3, arguments: (magicNumber: 4, text: "Passed text to closure")) { delay, text in
+        NSTimer.once(3, arguments: (magicNumber: 4, text: "Passed text to closure")) { magicNumber, text in
             print("I have magic number: \(magicNumber) and received this: \(text)")
         }
         

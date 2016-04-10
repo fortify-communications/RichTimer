@@ -31,7 +31,7 @@ public extension NSTimer {
     }
     
     private class func initTimer(ti: NSTimeInterval, userInfo: AnyObject, repeats: Bool = false) -> NSTimer {
-        return NSTimer(timeInterval: ti, target: self, selector: #selector(timerDidFired(_:)), userInfo: userInfo, repeats: repeats)
+        return NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(timerDidFired(_:)), userInfo: userInfo, repeats: repeats)
     }
 }
 
