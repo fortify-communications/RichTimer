@@ -2,45 +2,54 @@
 //  RichTimer.swift
 //  Pods
 //
-//  Created by Pilipenko Dima on 4/1/16.
+//  Created by Andrei Odeski on 4/1/16.
 //
 //
 
 import Foundation
 
-public extension NSTimer {
-    class func once(value: NSTimeInterval, completion: () -> Void) -> NSTimer {
-        return initTimer(value, userInfo: VoidBox(nilCompletion: completion), repeats: false)
+public extension Timer
+{
+    class func once(value: TimeInterval, completion: @escaping () -> Void) -> Timer {
+        return initTimer(ti: value, userInfo: VoidBox(nilCompletion: completion), repeats: false)
     }
     
-    class func every(value: NSTimeInterval, completion: () -> Void) -> NSTimer {
-        return initTimer(value, userInfo: VoidBox(nilCompletion: completion), repeats: true)
+    class func every(value: TimeInterval, completion: @escaping () -> Void) -> Timer {
+        return initTimer(ti: value, userInfo: VoidBox(nilCompletion: completion), repeats: true)
     }
     
-    class func once<T>(value: NSTimeInterval, arguments: T, completion: T -> Void) -> NSTimer {
-        return initTimer(value, userInfo: Box(arguments, completion: completion), repeats: false)
+    class func once<T>(value: TimeInterval, arguments: T, completion: @escaping (T) -> Void) -> Timer
+    {
+        return initTimer(ti: value, userInfo: Box(arguments, completion: completion), repeats: false)
     }
     
-    class func every<T>(value: NSTimeInterval, arguments: T, completion: T -> Void) -> NSTimer {
-        return initTimer(value, userInfo: Box(arguments, completion: completion), repeats: true)
+    class func every<T>(value: TimeInterval, arguments: T, completion: @escaping (T) -> Void) -> Timer {
+        return initTimer(ti: value, userInfo: Box(arguments, completion: completion), repeats: true)
     }
     
-    class func timerDidFired(timer: NSTimer) {
-        let box = timer.userInfo! as! Boxable
-        box.lookInside()
+    class func timerDidFire(_ timer: Timer?)
+    {
+        if let t = timer as Timer?
+        {
+            let box = t.userInfo! as! Boxable
+            box.lookInside()
+        }
     }
     
-    private class func initTimer(ti: NSTimeInterval, userInfo: AnyObject, repeats: Bool = false) -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(ti, target: self, selector: #selector(timerDidFired(_:)), userInfo: userInfo, repeats: repeats)
+    class func initTimer(ti: TimeInterval, userInfo: AnyObject, repeats: Bool = false) -> Timer
+    {
+        return Timer.scheduledTimer(timeInterval: ti, target: self, selector: #selector(self.timerDidFire(_ :)), userInfo: userInfo, repeats: repeats)
     }
 }
 
-private class VoidBox: Boxable {
+
+private class VoidBox: Boxable
+{
     typealias CompletionType = () -> Void
     
     private var _completion: CompletionType!
     
-    init(nilCompletion completion: CompletionType) {
+    init(nilCompletion completion: @escaping CompletionType) {
         self._completion = completion
     }
     
@@ -53,13 +62,15 @@ private class VoidBox: Boxable {
     }
 }
 
-private class Box<T>: Boxable {
-    typealias CompletionType = T -> Void
+
+private class Box<T>: Boxable
+{
+    typealias CompletionType = (T) -> Void
     
     private var _arguments: T!
     private var _completion: CompletionType!
     
-    init(_ arguments: T!, completion: CompletionType) {
+    init(_ arguments: T!, completion: @escaping CompletionType) {
         self._arguments = arguments
         self._completion = completion
     }
@@ -73,6 +84,7 @@ private class Box<T>: Boxable {
         _completion = nil
     }
 }
+
 
 private protocol Boxable {
     func lookInside()
